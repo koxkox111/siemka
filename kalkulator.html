@@ -15,18 +15,34 @@
 			var Firstnum = +document.getElementById('firstNumber').value;
 			var Secondnum = +document.getElementById('secondNumber').value;
 			var operator = document.getElementById('Dowhat').value;
+			var last;
 			var NewResult;
-			if(operator == "_add")
+			if(operator == "_add") {
 				NewResult = Firstnum + Secondnum;
-			else if(operator == "_subtract")
+				last = Firstnum + ' ' + '+' + ' ' + Secondnum + ' = ' + NewResult;
+			}
+			else if(operator == "_subtract") {
 				NewResult = Firstnum - Secondnum;
-			else if(operator == "_multiply")
+				last = Firstnum + ' ' + '-' + ' ' + Secondnum + ' = ' + NewResult;
+			}
+			else if(operator == "_multiply") {
 				NewResult = Firstnum * Secondnum;
-			else if(operator == "_divide")
+				last = Firstnum + ' ' + '*' + ' ' + Secondnum + ' = ' + NewResult;
+			}
+			else if(operator == "_divide") {
 				NewResult = Firstnum / Secondnum;
-			else if(operator == "_modulo")
+				last = Firstnum + ' ' + '/' + ' ' + Secondnum + ' = ' + NewResult;
+			}
+			else if(operator == "_modulo") {
 				NewResult = Firstnum % Secondnum;
+				last = Firstnum + ' ' + '%' + ' ' + Secondnum + ' = ' + NewResult;
+			}
 			document.getElementById('result').innerHTML = NewResult;
+			// stworz nowa linie teksu, uzupełinj ją last;
+			var table = document.getElementById("Table");
+			var row2 = table.insertRow(0);
+			var cell1 = row2.insertCell(0);
+			cell1.innerHTML = last;
 		}
 	</script>
 	<style>
@@ -50,6 +66,9 @@
 		 <div></div>
 		 <button onclick="calculate()"> CALCULATE </button>
 		 <p>=<p id="result"></p></p>
+		 <p>History of calucaltor:</p>
+		 <table id="Table">
+		 </table>
 		<!-- To jest komentarz w HTML -->
 		<!-- Tutaj dodajemy elementy HTML, czyli co ma się wyświetlić -->
 	</div>
