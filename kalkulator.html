@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Kalkulator</title>
+	<script>
+		// To jest komentarz w javascript
+		// Tutaj dodajemy kod, który coś przelicza, wylicza itd
+		
+		function showAlert() {
+			var alertTextInput = document.getElementById('alertTextInput');
+			alert(alertTextInput.value)
+		}
+		function calculate(){
+			var Firstnum = +document.getElementById('firstNumber').value;
+			var Secondnum = +document.getElementById('secondNumber').value;
+			var operator = document.getElementById('Dowhat').value;
+			var NewResult;
+			if(operator == "_add")
+				NewResult = Firstnum + Secondnum;
+			else if(operator == "_subtract")
+				NewResult = Firstnum - Secondnum;
+			else if(operator == "_multiply")
+				NewResult = Firstnum * Secondnum;
+			else if(operator == "_divide")
+				NewResult = Firstnum / Secondnum;
+			else if(operator == "_modulo")
+				NewResult = Firstnum % Secondnum;
+			document.getElementById('result').innerHTML = NewResult;
+		}
+	</script>
+	<style>
+	div {
+		padding: 5px;
+	}
+	</style>
+  </head>
+  <body>
+		 <input id="firstNumber" type="number"/>
+		 <div></div>
+		 <select id="Dowhat">
+			<option value="_add">+</option>
+			<option value="_subtract">-</option>
+			<option value="_multiply">*</option>
+			<option value="_divide">/</option>
+			<option value="_modulo">%</option>
+		 </select>
+	     <div></div>
+		 <input id="secondNumber" type="number" />
+		 <div></div>
+		 <button onclick="calculate()"> CALCULATE </button>
+		 <p>=<p id="result"></p></p>
+		<!-- To jest komentarz w HTML -->
+		<!-- Tutaj dodajemy elementy HTML, czyli co ma się wyświetlić -->
+	</div>
+  </body>
+</html>
