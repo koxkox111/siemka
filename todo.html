@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>TODO</title>
+	<script>
+	
+		var todoItems = [];
+		var count = 0;
+		function add() {
+			var whatdo = document.getElementById("TEXT");
+			var Object = {text : whatdo.value, status: "new"};
+			todoItems.push(Object);
+			//
+			var table = document.getElementById("Table");
+			var row2 = table.insertRow(count);
+			var cell1 = row2.insertCell(0);
+			cell1.innerHTML = whatdo.value;
+			count++;
+		}
+		
+		function rob() {
+			var ktoryelement = document.getElementById("KTORY").value;
+			var mhm = document.getElementById("Dowhat").value;
+			var dowyp;
+			if(mhm == "dod") {
+				dowyp = todoItems[ktoryelement].text;
+				dowyp = dowyp.fontcolor("green");
+			}
+			else {
+				dowyp = todoItems[ktoryelement].text;
+				dowyp = dowyp.fontcolor("red");
+			}
+			todoItems.splice(ktoryelement,1);
+			document.getElementById("Table").deleteRow(ktoryelement);
+			//
+			var table = document.getElementById("Table1");
+			var row2 = table.insertRow(0);
+			var cell1 = row2.insertCell(0);
+			cell1.innerHTML = dowyp;
+		}
+		
+		
+	</script>
+  </head>
+  <body>
+    <div>
+		<input id="TEXT" type="text" />
+		<button onclick="add()">CLICK ME</button>
+		
+		
+		<input id="KTORY" type="number"/>
+		<select id="Dowhat">
+			<option value="dod">AKCEPTUJ</option>
+			<option value="us">USUN</option>
+		 </select>
+		<button onclick="rob()">ZATWIERDZ</button>
+		<p>TODO :</p>
+		<table id="Table">
+		</table>
+		<p>ZATWIERDZONE - do pokolorwania: </p>
+		<table id="Table1">
+		</table>
+		
+	</div>
+  </body>
+</html>
