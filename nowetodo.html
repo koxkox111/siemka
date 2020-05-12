@@ -1,0 +1,76 @@
+<html>
+<head>
+<title>||Praca z elementami||</title>
+</head>
+
+<script type="text/javascript">
+
+var todoItems = [];
+var count = 1;
+function add() {
+
+	text = document.getElementById('textbox').value;
+	newTodo = document.createElement("div");
+	newTodo.innerHTML = text;
+	newTodo.setAttribute("id",count);
+	//
+	newButtonAcc = document.createElement('button');
+	newButtonAcc.innerHTML = 'ACCEPT';
+	newButtonAcc.setAttribute("id", count);
+	newButtonAcc.setAttribute("onclick", 'ADD(this.id)');	
+	//
+	newButtonDel = document.createElement('button');
+	newButtonDel.innerHTML = 'DELETE';
+	newButtonDel.setAttribute("id",count);
+	newButtonDel.setAttribute("onclick", 'DEL(this.id)');
+	//
+	var my_div = document.getElementById("todolist");
+	document.body.insertBefore(newTodo, my_div);
+	document.body.insertBefore(newButtonAcc, my_div);
+	document.body.insertBefore(newButtonDel, my_div);
+	count++;
+}
+
+function ADD(id) {
+	var elementT = document.getElementById(id);
+	var TEXT = elementT.innerHTML;
+    elementT.remove();
+	var elementA = document.getElementById(id);
+    elementA.remove();
+	var elementD = document.getElementById(id);
+    elementD.remove();
+	OutGreen(TEXT);
+}
+function DEL(id) {
+	var elementT = document.getElementById(id);
+	var TEXT = elementT.innerHTML;
+    elementT.remove();
+	var elementA = document.getElementById(id);
+    elementA.remove();
+	var elementD = document.getElementById(id);
+    elementD.remove();
+	OutRed(TEXT);
+}
+function OutGreen(TEXT) {
+	TEXT = TEXT.fontcolor("green");
+	Cout(TEXT);
+}
+function OutRed(TEXT) {
+	TEXT = TEXT.fontcolor("red");
+	Cout(TEXT);
+}
+function Cout(TEXT) {
+	newLine = document.createElement("div");
+	newLine.innerHTML = TEXT;
+	var my_div = document.getElementById("Finished");
+	document.body.insertBefore(newLine, my_div);
+}
+</script>
+
+<body>
+    <input id='textbox'></input>
+	<button id='Addbutton' onclick='add()'> Add me </button>
+	<div id='todolist'>TO DO LISTA</div>
+	<div id='Finished'></div>
+</body>
+</html>
