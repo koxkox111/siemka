@@ -8,27 +8,40 @@
 var todoItems = [];
 var count = 1;
 function add() {
+	var my_div = document.getElementById("todolist");
+	//Dodaj Text
+	CreateText(count,my_div);
+	//Dodaj Przycisk Akceptuj
+	CreateAddButton(count,my_div);
+	//Dodaj Przycisk Usun
+	CreateDelButton(count,my_div);
+	
+	count++;	
+}
 
+function CreateText(id1,AddHere) {
 	text = document.getElementById('textbox').value;
 	newTodo = document.createElement("div");
 	newTodo.innerHTML = text;
-	newTodo.setAttribute("id",count);
-	//
+	newTodo.setAttribute("id",id1);
+	document.body.insertBefore(newTodo,AddHere);
+}
+
+function CreateAddButton(id1,AddHere) {
 	newButtonAcc = document.createElement('button');
 	newButtonAcc.innerHTML = 'ACCEPT';
-	newButtonAcc.setAttribute("id", count);
+	newButtonAcc.setAttribute("id", id1);
 	newButtonAcc.setAttribute("onclick", 'ADD(this.id)');	
-	//
+	document.body.insertBefore(newButtonAcc, AddHere);
+
+}
+
+function CreateDelButton(id1,AddHere) {
 	newButtonDel = document.createElement('button');
 	newButtonDel.innerHTML = 'DELETE';
-	newButtonDel.setAttribute("id",count);
+	newButtonDel.setAttribute("id",id1);
 	newButtonDel.setAttribute("onclick", 'DEL(this.id)');
-	//
-	var my_div = document.getElementById("todolist");
-	document.body.insertBefore(newTodo, my_div);
-	document.body.insertBefore(newButtonAcc, my_div);
-	document.body.insertBefore(newButtonDel, my_div);
-	count++;
+	document.body.insertBefore(newButtonDel, AddHere);
 }
 
 function ADD(id) {
@@ -41,6 +54,7 @@ function ADD(id) {
     elementD.remove();
 	OutGreen(TEXT);
 }
+
 function DEL(id) {
 	var elementT = document.getElementById(id);
 	var TEXT = elementT.innerHTML;
@@ -51,6 +65,7 @@ function DEL(id) {
     elementD.remove();
 	OutRed(TEXT);
 }
+
 function OutGreen(TEXT) {
 	TEXT = TEXT.fontcolor("green");
 	Cout(TEXT);
@@ -70,7 +85,7 @@ function Cout(TEXT) {
 <body>
     <input id='textbox'></input>
 	<button id='Addbutton' onclick='add()'> Add me </button>
-	<div id='todolist'>TO DO LISTA</div>
+	<div id='todolist'></div>
 	<div id='Finished'></div>
 </body>
 </html>
