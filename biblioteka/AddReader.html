@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>DODAWANIE CZYTELNIKA</title>
+	<script>
+	var ReaderList = [];
+	function check() {
+	
+		var ReaderFirstName = document.getElementById('readerfirstname1').value;
+		var ReaderLastName = document.getElementById('readerlastname1').value;
+		var PeselCode = document.getElementById('pesel').value;
+		
+		if(ReaderFirstName == '' || ReaderLastName == '' || PeselCode == '')
+			alert('WSZYTSKIE POLA MAJA BYC WYPELNIONE');
+		else
+			add(ReaderFirstName,ReaderLastName,PeselCode);
+			
+		}
+	function add(ReaderFirstName,ReaderLastName,PeselCode) {
+		var zero = 0;
+		var Reader = {FirstName:ReaderFirstName,LastName:ReaderLastName,Pesel:PeselCode,id:zero};
+		if (JSON.parse(localStorage.getItem('ListofReaders')) === null) {
+			ReaderList.push(Reader);
+			localStorage.setItem('ListofReaders', JSON.stringify(ReaderList));
+		}
+		else {	
+			ReaderList = JSON.parse(localStorage.getItem('ListofReaders'));
+			ReaderList.push(Reader);
+			localStorage.setItem('ListofReaders', JSON.stringify(ReaderList));
+		}
+	}
+	</script>
+  </head>
+  <body>
+    <div>
+		DODAWANIE CZYTLENIKA
+		<div></div>
+		<input id="readerfirstname1"/>IMIE
+		<div></div>
+		<input id="readerlastname1"/>NAZWISKO
+		<div>
+		<input id="pesel"/>PESEL
+		<div>
+		<button onclick="check()">DODAJ</button>
+		<a href="Readers.html">POWROT</a>
+	</div>
+  </body>
+</html>

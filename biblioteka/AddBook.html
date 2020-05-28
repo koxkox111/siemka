@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>DODAWANIE KSIAZKI</title>
+	<script>
+		var BookList = [];
+		function check() {
+			var BookName = document.getElementById('bookname').value;
+			var AuthorName = document.getElementById('author').value;
+			var ISBNCode = document.getElementById('ISBN').value;
+			var AmountValue = document.getElementById('amount').value;
+			if(BookName == '' || AuthorName == '' || ISBNCode == '' || AmountValue == '')
+				alert('WSZYTSKIE POLA MAJA BYC WYPELNIONE');
+			else
+				add(BookName,AuthorName,ISBNCode,AmountValue)
+		}
+		
+		function add(BookName,AuthorName,ISBNCode,AmountValue) {
+			var zero = 0;
+			var Books = {name:BookName,author:AuthorName,isbn1:ISBNCode,amount:AmountValue,taken:zero,id:zero};
+			if (JSON.parse(localStorage.getItem('ListofBooks')) === null) {
+				
+				BookList.push(Books);
+				localStorage.setItem('ListofBooks', JSON.stringify(BookList));
+			}
+			else {
+				
+				BookList = JSON.parse(localStorage.getItem('ListofBooks'));
+				BookList.push(Books);
+				localStorage.setItem('ListofBooks', JSON.stringify(BookList));
+			}
+		}
+		
+	</script>	
+  </head>
+  <body>
+    <div>
+		<input id="bookname"/>TYTUŁ
+		<div></div>
+		<input id="author"/>AUTOR
+		<div>
+		<input id="ISBN"/>ISBN
+		<div>
+		<input id="amount"/>ILOSC
+		<button onclick="check()">DODAJ</button>
+		<a href="Main.html">POWROT</a>
+
+	</div>
+  </body>
+</html>
