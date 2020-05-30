@@ -14,18 +14,16 @@
 			resetid();
 			for(i = 0; i < BookList.length ; i++) {
 				if(SearchByid(i,SearchFor) == 1) {
-					Added++;
-					BookList[i].id = Added;
-					var NewBook = 'Tytuł: ' + BookList[i].name + ' Autor: ' + BookList[i].author + ' ISBN: ' +  BookList[i].isbn1;
-					CreateText(NewBook,Added);
-					CreateEditButton(i,Added);
-					CreateTakeButton(i,Added);
+					var NewBook = 'Tytuł: ' + BookList[i].name + ' Autor: ' + BookList[i].author + ' ISBN: ' +  BookList[i].isbn1 + ' id: ' + BookList[i].id;
+					CreateText(NewBook,BookList[i].id);
+					CreateEditButton(BookList[i].id);
+					CreateTakeButton(BookList[i].id);
 				}
 			}
 		}
 		function resetid() {
 			for(i = 0 ; i < BookList.length ; i++){
-				BookList[i].id = 0;
+				BookList[i].id = i;
 			}
 			for(i = 0 ; i <= BookList.length ; i++) {
 				var element1 = document.getElementById(i);
@@ -101,10 +99,18 @@
 			document.body.appendChild(newButton);
 		}
 		function Edit(id) {
-			//
+			localStorage.setItem('BookLookingAt',id);
+			localStorage.setItem('ListofBooks', JSON.stringify(BookList));
+			var link = "EditBook.html?id="
+			link = link + id;
+			location.href = link;
 		}
 		function Take(id) {
-			//
+			localStorage.setItem('BookLookingAt',id);
+			localStorage.setItem('ListofBooks', JSON.stringify(BookList));
+			var link = "TakeBook.html?id="
+			link = link + id;
+			location.href = link;
 		}
 	</script>
   </head>

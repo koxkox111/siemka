@@ -17,7 +17,7 @@
 		}
 		
 		function add(BookName,AuthorName,ISBNCode,AmountValue) {
-			var zero = 0;
+			var zero = -1;
 			var Books = {name:BookName,author:AuthorName,isbn1:ISBNCode,amount:AmountValue,taken:zero,id:zero};
 			if (JSON.parse(localStorage.getItem('ListofBooks')) === null) {
 				

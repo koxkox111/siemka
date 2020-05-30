@@ -4,12 +4,89 @@
     <meta charset="utf-8">
     <title>WYPORZYCZENIE KSIAZKI</title>
 	<script>
+		var urlParams = new URLSearchParams(window.location.search)
+		var Bookid = urlParams.get("id");
+		var ListofReaders = JSON.parse(localStorage.getItem('ListofReaders'));
+		var BookList = JSON.parse(localStorage.getItem('ListofBooks'));
+		function init() {
+			var str  = BookList[Bookid].name + ' ' + BookList[Bookid].author;
+			newText = document.createElement('div');
+			newText.innerHTML = str;
+			document.body.appendChild(newText);
+			var str1 = 'WYPOZYCZONYCH: ' + BookList[Bookid].taken + ' WSZYTSKICH: ' + BookList[Bookid].amount;
+			newText1 = document.createElement('div');
+			newText1.innerHTML = str1;
+			document.body.appendChild(newText1);
+			draw();
+		}
+		function draw() {
+			clear();
+			var key = document.getElementById('Readername').value;
+			for(i = 0 ; i < ListofReaders.length ; i++) {
+				if(findkey(ListofReaders[i].FirstName,key) == 1 || findkey(ListofReaders[i].LastName,key) == 1 || findkey(ListofReaders[i].Pesel,key) == 1)	{
+					CreateText(i);
+					CreateButton(i);
+				}
+			}
+		}
+		function CreateText(id) {
+			var reader = ListofReaders[id].FirstName + ' ' + ListofReaders[id].LastName + ' ' + ListofReaders[id].Pesel;
+			newTodo = document.createElement("div");
+			newTodo.innerHTML = reader;
+			newTodo.setAttribute("id",id);
+			document.body.appendChild(newTodo);
+		}
+		function CreateButton(id) {
+			newButton = document.createElement('button');
+			newButton.innerHTML = 'DODAJ';
+			newButton.setAttribute("id",id);
+			newButton.setAttribute("onclick",'Addto(this.id)');
+			document.body.appendChild(newButton);
+		}
+		function Addto(id) {
+			ListofReaders[id].books.push(Bookid);
+			BookList[Bookid].taken = BookList[Bookid].taken + 1;
+			localStorage.setItem('ListofBooks', JSON.stringify(BookList));
+			localStorage.setItem('ListofReaders',JSON.stringify(ListofReaders));
+			location.href = "Bibliothek.html";
+		}
+		function findkey(Text,Key) {
+			var KeyLength = Key.length;
+			for(m = 0 ; m < Text.length ; m++) {
+				var j = m - 1 + KeyLength;
+				if(j < Text.length) {
+					var Str = '';
+					for(k = m ; k <= j ; k++)
+						Str = Str + Text[k];
+					if(Str == Key)
+						return 1;
+				}
+			}
+			return 0;
+		}
+		function clear() {
+			for(i = 0 ; i <= ListofReaders.length ; i++) {
+				var element1 = document.getElementById(i);
+				if(element1 != null)
+					element1.remove();
+					var element1 = document.getElementById(i);
+				if(element1 != null)
+					element1.remove();
+					var element1 = document.getElementById(i);
+				if(element1 != null)
+					element1.remove();
+			}
+		}
 	</script>
   </head>
-  <body>
+  
+  <body onload="init()">
     <div>
-		WYPORZYCZENIE
+		Tu szukaj<input id="Readername"></input>
+		<div>
+		<button onclick="draw()"> SZUKAJ</button>
 		<div></div>
+		
 		<a href="Bibliothek.html">POWROT</a>
 	</div>
   </body>
