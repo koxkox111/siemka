@@ -18,7 +18,8 @@
 		
 		function add(BookName,AuthorName,ISBNCode,AmountValue) {
 			var zero = -1;
-			var Books = {name:BookName,author:AuthorName,isbn1:ISBNCode,amount:AmountValue,taken:zero,id:zero};
+			var Tbooks = 0;
+			var Books = {name:BookName,author:AuthorName,isbn1:ISBNCode,amount:AmountValue,taken:Tbooks,id:zero};
 			if (JSON.parse(localStorage.getItem('ListofBooks')) === null) {
 				
 				BookList.push(Books);
