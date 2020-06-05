@@ -3,108 +3,12 @@
   <head>
     <meta charset="utf-8">
     <title>EDYTUJ CZYTELNIKA</title>
+	 <script src="addElement.js"></script>
+	 <script src="ClearFunction.js"></script>
+	 <script src="EditReader.js"></script>
 	<script>
 		var ListofReaders = JSON.parse(localStorage.getItem('ListofReaders'));
 		var BookList = JSON.parse(localStorage.getItem('ListofBooks'));
-		function draw() {
-			Clr();
-			var key = document.getElementById('readername').value;
-			for(i = 0 ; i < ListofReaders.length ; i++) {
-				if(findkey(ListofReaders[i].FirstName,key) == 1 || findkey(ListofReaders[i].LastName,key) == 1 || findkey(ListofReaders[i].Pesel,key) == 1)	{
-					var reader = ListofReaders[i].FirstName + ' ' + ListofReaders[i].LastName + ' ' + ListofReaders[i].Pesel;
-					CreateText(i,reader);
-					CreateButton(i);
-				}
-			}
-		}
-		function CreateText(id,text) {
-			newTodo = document.createElement("div");
-			newTodo.innerHTML = text;
-			newTodo.setAttribute("id",id);
-			document.body.appendChild(newTodo);
-		}
-		function CreateButton(id) {
-			newButton = document.createElement('button');
-			newButton.innerHTML = 'EDYTUJ CZYTELNIKA';
-			newButton.setAttribute("id",id);
-			newButton.setAttribute("onclick",'Show(this.id)');
-			document.body.appendChild(newButton);
-		}
-		function CreateButton1(id) {
-			newButton = document.createElement('button');
-			newButton.innerHTML = 'AKCEPTUJ';
-			newButton.setAttribute("id",id);
-			newButton.setAttribute("onclick",'Confirm(id)');
-			document.body.appendChild(newButton);
-		}
-		function CreateButton2(id) {
-			newButton = document.createElement('button');
-			newButton.innerHTML = 'ANULUJ';
-			newButton.setAttribute("id",id);
-			newButton.setAttribute("onclick",'draw()');
-			document.body.appendChild(newButton);
-		}
-		function CreateInput(id) { 
-			newInput = document.createElement("input");
-			newInput.setAttribute("id",id);
-			document.body.appendChild(newInput);
-		}
-		function findkey(Text,Key) {
-			var KeyLength = Key.length;
-			for(m = 0 ; m < Text.length ; m++) {
-				var j = m - 1 + KeyLength;
-				if(j < Text.length) {
-					var Str = '';
-					for(k = m ; k <= j ; k++)
-						Str = Str + Text[k];
-					if(Str == Key)
-						return 1;
-				}
-			}
-			return 0;
-		}
-		function Clr() {
-			for(i = -6 ; i <= ListofReaders.length ; i++) {
-				var element1 = document.getElementById(i);
-				if(element1 != null)
-					element1.remove();
-					var element1 = document.getElementById(i);
-				if(element1 != null)
-					element1.remove();
-					var element1 = document.getElementById(i);
-				if(element1 != null)
-					element1.remove();
-			}
-		}
-		function Show(id) {
-			Clr();
-			var str = 'Edycja czytelnika : ';
-			var imie = ListofReaders[id].FirstName + ' ' + ListofReaders[id].LastName + ' ' + ListofReaders[id].Pesel + ' :';
-			str = str + imie;
-			//
-			CreateText(0,str);
-			CreateText(-1,'imie:');
-			CreateInput(-2);
-			CreateText(-3,'nazwisko:');
-			CreateInput(-4);
-			CreateText(-5,'pesel:');
-			CreateInput(-6);
-			//
-			CreateButton1(id);
-			CreateButton2(-2);
-			
-		}
-		function Confirm(id) {
-			alert(id);
-			var newname = document.getElementById(-2).value;
-			var newlastname = document.getElementById(-4).value;
-			var newpesel = document.getElementById(-6).value;
-			ListofReaders[id].FirstName = newname;
-			ListofReaders[id].LastName= newlastname;
-			ListofReaders[id].Pesel = newpesel;
-			localStorage.setItem('ListofReaders', JSON.stringify(ListofReaders));
-			location.href = "Readers.html";
-		}
 	</script>
   </head>
   <body onload = "draw()">

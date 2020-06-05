@@ -3,70 +3,12 @@
   <head>
     <meta charset="utf-8">
     <title>POKAZ CZYTELNIKA</title>
+	 <script src="addElement.js"></script>
+	 <script src="ClearFunction.js"></script>
+	  <script src="ShowReader.js"></script>
 	<script>
 		var ListofReaders = JSON.parse(localStorage.getItem('ListofReaders'));
 		var BookList = JSON.parse(localStorage.getItem('ListofBooks'));
-		function draw() {
-			Clr();
-			var key = document.getElementById('readername').value;
-			for(i = 0 ; i < ListofReaders.length ; i++) {
-				if(findkey(ListofReaders[i].FirstName,key) == 1 || findkey(ListofReaders[i].LastName,key) == 1 || findkey(ListofReaders[i].Pesel,key) == 1)	{
-					var reader = ListofReaders[i].FirstName + ' ' + ListofReaders[i].LastName + ' ' + ListofReaders[i].Pesel;
-					CreateText(i,reader);
-					CreateButton(i);
-				}
-			}
-		}
-		function CreateText(id,text) {
-			newTodo = document.createElement("div");
-			newTodo.innerHTML = text;
-			newTodo.setAttribute("id",id);
-			document.body.appendChild(newTodo);
-		}
-		function CreateButton(id) {
-			newButton = document.createElement('button');
-			newButton.innerHTML = 'POKAZ CZYTELNIKA';
-			newButton.setAttribute("id",id);
-			newButton.setAttribute("onclick",'Show(this.id)');
-			document.body.appendChild(newButton);
-		}
-		function findkey(Text,Key) {
-			var KeyLength = Key.length;
-			for(m = 0 ; m < Text.length ; m++) {
-				var j = m - 1 + KeyLength;
-				if(j < Text.length) {
-					var Str = '';
-					for(k = m ; k <= j ; k++)
-						Str = Str + Text[k];
-					if(Str == Key)
-						return 1;
-				}
-			}
-			return 0;
-		}
-		function Show(id) {
-			Clr();
-			var str = 'Ksiazki wyporzyczone przez ';
-			var imie = ListofReaders[id].FirstName + ' ' + ListofReaders[id].LastName + ' ' + ListofReaders[id].Pesel + ' :';
-			str = str + imie;
-			for (i = 0 ; i < ListofReaders[id].books.length ; i++){
-				str = str + ' ' + ListofReaders[id].books[i];
-			}	
-			CreateText(0,str);
-		}
-		function Clr() {
-			for(i = 0 ; i <= ListofReaders.length ; i++) {
-				var element1 = document.getElementById(i);
-				if(element1 != null)
-					element1.remove();
-					var element1 = document.getElementById(i);
-				if(element1 != null)
-					element1.remove();
-					var element1 = document.getElementById(i);
-				if(element1 != null)
-					element1.remove();
-			}
-		}
 	</script>
   </head>
   <body onload = "draw()">

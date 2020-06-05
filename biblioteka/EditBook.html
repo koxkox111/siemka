@@ -3,29 +3,11 @@
   <head>
     <meta charset="utf-8">
     <title>EDYCJA KSIAZKI</title>
+	<script src="EditBook.js"></script>
 	<script>
 		var urlParams = new URLSearchParams(window.location.search)
 		var id = urlParams.get("id");
-		var BookList = JSON.parse(localStorage.getItem('ListofBooks'));
-		function accept() {
-			var newname =  document.getElementById("newnameinput").value;
-			var newauthor =  document.getElementById("newauthorinput").value;
-			var newamount =  document.getElementById("newamountinput").value;
-			if(newname == '' || newauthor == '' || newamount=='')
-				alert('Wypelnij wszystkie pola');
-			else {
-				BookList[id].name = newname;
-				BookList[id].author = newauthor;
-				BookList[id].amount = newamount;
-				localStorage.setItem('ListofBooks', JSON.stringify(BookList));
-				back();
-			}
-		}
-		
-		
-		function back() {
-			location.href = "Bibliothek.html";
-		}
+		var BookList = JSON.parse(localStorage.getItem('ListofBooks'));	
 	</script>
   </head>
   <body>
@@ -39,9 +21,7 @@
 		<div>
 		<button onclick="accept()">Akceptuj</button>
 		<div>
-		<button onclick="back()">Cofnij1</button>
-		
-		<a href="Bibliothek.html">POWROT</a>
+		<button onclick="back()">Cofnij</button>
 	</div>
   </body>
 </html>
