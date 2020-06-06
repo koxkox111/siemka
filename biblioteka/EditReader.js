@@ -19,19 +19,22 @@ function Show(id) {
 	CreateText(-3,'nazwisko:');
 	CreateInput(-4);
 	CreateText(-5,'pesel:');
-	CreateInput(-6);
+	CreateInputNumber(-6);
 	//
 	CreateButton(id,'AKCEPTUJ','Confirm(id)');
 	CreateButton(-2,'ANULUJ','draw()');
 }
 function Confirm(id) {
-	alert(id);
 	var newname = document.getElementById(-2).value;
 	var newlastname = document.getElementById(-4).value;
 	var newpesel = document.getElementById(-6).value;
-	ListofReaders[id].FirstName = newname;
-	ListofReaders[id].LastName= newlastname;
-	ListofReaders[id].Pesel = newpesel;
-	localStorage.setItem('ListofReaders', JSON.stringify(ListofReaders));
-	location.href = "Readers.html";
+	if(newname == '' || newlastname == '' || newpesel == '')
+		alert('Wszystkie pola maja byc wypelnione');
+	else {
+		ListofReaders[id].FirstName = newname;
+		ListofReaders[id].LastName= newlastname;
+		ListofReaders[id].Pesel = newpesel;
+		localStorage.setItem('ListofReaders', JSON.stringify(ListofReaders));
+		location.href = "Readers.html";
+	}
 }

@@ -16,6 +16,12 @@ function CreateInput(id) {
 	newInput.setAttribute("id",id);
 	document.body.appendChild(newInput);
 }
+function CreateInputNumber(id) {
+	newInput = document.createElement("input");
+	newInput.setAttribute("id",id);
+	newInput.setAttribute("type","number");
+	document.body.appendChild(newInput);
+}
 function findkey(Text,Key) {
 	var KeyLength = Key.length;
 	for(m = 0 ; m < Text.length ; m++) {

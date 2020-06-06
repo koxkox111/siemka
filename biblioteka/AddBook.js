@@ -9,17 +9,18 @@ function check() {
 		add(BookName,AuthorName,ISBNCode,AmountValue)
 }	
 function add(BookName,AuthorName,ISBNCode,AmountValue) {
-	var zero = -1;
-	var Tbooks = 0;
-	var Books = {name:BookName,author:AuthorName,isbn1:ISBNCode,amount:AmountValue,taken:Tbooks,id:zero};
-	if (JSON.parse(localStorage.getItem('ListofBooks')) === null) {	
+	var Takenbooks = 0;
+	if (JSON.parse(localStorage.getItem('ListofBooks')) === null) {
+		var zero = 0;
+		var Books = {name:BookName,author:AuthorName,isbn1:ISBNCode,amount:AmountValue,taken:Takenbooks,id:zero};
 		BookList.push(Books);
 		localStorage.setItem('ListofBooks', JSON.stringify(BookList));
 	}
-	else {	
+	else {
 		BookList = JSON.parse(localStorage.getItem('ListofBooks'));
+		var zero = BookList.length;
+		var Books = {name:BookName,author:AuthorName,isbn1:ISBNCode,amount:AmountValue,taken:Takenbooks,id:zero};
 		BookList.push(Books);
 		localStorage.setItem('ListofBooks', JSON.stringify(BookList));
 	}
 }
-		

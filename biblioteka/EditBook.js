@@ -1,3 +1,4 @@
+
 function accept() {
 	var newname =  document.getElementById("newnameinput").value;
 	var newauthor =  document.getElementById("newauthorinput").value;

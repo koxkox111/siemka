@@ -18,6 +18,6 @@ function Show(id) {
 	str = str + imie;
 	for (i = 0 ; i < ListofReaders[id].books.length ; i++){
 		str = str + ' ' + ListofReaders[id].books[i];
-	}	
+	}		
 	CreateText(0,str);
 }
